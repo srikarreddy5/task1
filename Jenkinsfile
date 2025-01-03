@@ -21,6 +21,18 @@ pipeline {
                 bat '"C:\\Program Files\\nodejs\\npm.cmd" install' // Directly use full path to npm.cmd
             }
         }
+stage('Verify sonar-scanner Installation') {
+    steps {
+        script {
+            // Display the workspace path to ensure it's correct
+            echo "WORKSPACE: ${env.WORKSPACE}"
+            
+            // List the contents of the node_modules directory
+            bat "dir ${env.WORKSPACE}\\node_modules"
+        }
+    }
+}
+
        stage('SonarQube Analysis') {
     steps {
         script {
