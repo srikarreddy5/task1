@@ -25,7 +25,8 @@ pipeline {
     steps {
         script {
             withSonarQubeEnv('srikar_reddy') { 
-                bat 'npm run sonar-scanner'
+                bat '"${WORKSPACE}\\node_modules\\sonar-scanner\\bin\\sonar-scanner"'
+
             }
         }
     }
