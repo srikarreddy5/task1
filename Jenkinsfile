@@ -41,13 +41,14 @@ pipeline {
                     withCredentials([string(credentialsId: 'sonarqube_id', variable: 'SONAR_AUTH_TOKEN')]) {
                         // Run SonarQube analysis using the SonarQube Scanner with parameters
                         bat """
-                        "%WORKSPACE%\\node_modules\\sonar-scanner\\bin\\sonar-scanner" ^
-                        -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} ^
-                        -Dsonar.projectName=${env.SONAR_PROJECT_NAME} ^
-                        -Dsonar.sources=src ^
-                        -Dsonar.host.url=${env.SONAR_HOST_URL} ^
-                        -Dsonar.login=${env.SONAR_AUTH_TOKEN}
-                        """
+"%WORKSPACE%\\node_modules\\sonar-scanner\\bin\\sonar-scanner" -X ^
+-Dsonar.projectKey=${env.SONAR_PROJECT_KEY} ^
+-Dsonar.projectName=${env.SONAR_PROJECT_NAME} ^
+-Dsonar.sources=src ^
+-Dsonar.host.url=${env.SONAR_HOST_URL} ^
+-Dsonar.login=${env.SONAR_AUTH_TOKEN}
+"""
+
                     }
                 }
             }
