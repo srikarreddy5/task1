@@ -5,8 +5,8 @@ pipeline {
         PATH = "C:\\Program Files\\nodejs\\:${env.PATH};${env.WORKSPACE}\\node_modules\\.bin"
         SONAR_HOST_URL = 'http://192.168.164.58:9000/'
         SONAR_AUTH_TOKEN = credentials('sonarqube_id') // Authentication token for SonarQube
-        SONAR_PROJECT_KEY = 'assessment_task_1'  // Set your SonarQube Project Key
-        SONAR_PROJECT_NAME = 'assessment_task_1' // Set your SonarQube Project Name
+        SONAR_PROJECT_KEY = 'srikar'  // Set your SonarQube Project Key
+        SONAR_PROJECT_NAME = 'Srikar Project' // Set your SonarQube Project Name
     }
 
     stages {
