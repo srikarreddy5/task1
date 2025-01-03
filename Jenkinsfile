@@ -1,7 +1,9 @@
 pipeline {
     agent any
     environment {
-      
+        // Set the path to include Node.js location
+        PATH = "C:\\Program Files\\nodejs\\:$PATH"
+        
         SONAR_HOST_URL = 'http://192.168.164.58:9000/' // Adjust the SonarQube URL as needed
         SONAR_AUTH_TOKEN = credentials('sonarqube_id') // Adjust with your SonarQube credentials ID
     }
