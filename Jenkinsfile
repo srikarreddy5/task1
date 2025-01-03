@@ -3,9 +3,9 @@ pipeline {
 
     environment {
         PATH = "C:\\Program Files\\nodejs\\:${env.PATH};${env.WORKSPACE}\\node_modules\\.bin"
-        SONAR_HOST_URL = 'http://192.168.164.58:9000/'
+        SONAR_HOST_URL = 'http://192.168.164.58:9000/' // SonarQube server URL
         SONAR_AUTH_TOKEN = credentials('sonarqube_id') // Authentication token for SonarQube
-        SONAR_PROJECT_KEY = 'srikar'  // Set your SonarQube Project Key
+        SONAR_PROJECT_KEY = 'srikar' // Set your SonarQube Project Key
         SONAR_PROJECT_NAME = 'Srikar Project' // Set your SonarQube Project Name
     }
 
@@ -16,7 +16,7 @@ pipeline {
                 git credentialsId: 'token_github', branch: 'master', url: 'https://github.com/srikarreddy5/task1.git'
             }
         }
-        
+
         stage('Install Dependencies') {
             steps {
                 bat 'npm install' // Install dependencies using npm
@@ -28,7 +28,7 @@ pipeline {
                 script {
                     // Display the workspace path to ensure it's correct
                     echo "WORKSPACE: ${env.WORKSPACE}"
-                    
+
                     // List the contents of the node_modules directory
                     bat "dir ${env.WORKSPACE}\\node_modules"
                 }
@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
                     // Run SonarQube analysis using the SonarQube Scanner with parameters
-                    withSonarQubeEnv('srikar_reddy') { 
+                    withSonarQubeEnv('srikar_reddy') {
                         bat """
                         "%WORKSPACE%\\node_modules\\sonar-scanner\\bin\\sonar-scanner" \
                         -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} \
