@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         // Set the path to include Node.js location
-        PATH = "C:\\Program Files\\nodejs\\:$PATH"
+        PATH = "C:\\Program Files\\nodejs\\:${env.PATH}"
         
         SONAR_HOST_URL = 'http://192.168.164.58:9000/' // Adjust the SonarQube URL as needed
         SONAR_AUTH_TOKEN = credentials('sonarqube_id') // Adjust with your SonarQube credentials ID
@@ -24,9 +24,18 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('srikar_reddy') { // Adjust the SonarQube installation name as needed
-                        bat 'npm run sonar' // Run SonarQube analysis
-                    withSonarQubeEnv('srikar_reddy') {
-                        bat '"C:\\Program Files\\nodejs\\npm.cmd" run sonar' // Run SonarQube analysis
+                        bat 'npm run sonar-scanner' // Run SonarQube analysis using npm script
                     }
                 }
             }
+        }
+    }
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Check the logs for details.'
+        }
+    }
+}
