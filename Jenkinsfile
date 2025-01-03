@@ -22,18 +22,6 @@ pipeline {
             }
         }
 
-        stage('Verify sonar-scanner Installation') {
-            steps {
-                script {
-                    // Display the workspace path to ensure it's correct
-                    echo "WORKSPACE: ${env.WORKSPACE}"
-
-                    // List the contents of the node_modules directory
-                    bat "dir ${env.WORKSPACE}\\node_modules"
-                }
-            }
-        }
-
         stage('SonarQube Analysis') {
             steps {
                 script {
@@ -44,7 +32,7 @@ pipeline {
                         "%WORKSPACE%\\node_modules\\sonar-scanner\\bin\\sonar-scanner" -X ^
                         -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} ^
                         -Dsonar.projectName="${env.SONAR_PROJECT_NAME}" ^
-                        -Dsonar.sources=src ^
+                        -Dsonar.sources=. ^  // Adjusted to point to the root directory or correct folder
                         -Dsonar.host.url=${env.SONAR_HOST_URL} ^
                         -Dsonar.login=${env.SONAR_AUTH_TOKEN}
                         """
