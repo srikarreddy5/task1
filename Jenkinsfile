@@ -18,7 +18,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    withSonarQubeEnv('srikar_reddy') {
+                    withSonarQubeEnv('srikar_reddy') { // Adjust the SonarQube installation name as needed
                         bat '"C:\\Program Files\\nodejs\\npm.cmd" run sonar' // Run SonarQube analysis
                     }
                 }
