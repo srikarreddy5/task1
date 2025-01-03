@@ -37,7 +37,8 @@ stage('Verify sonar-scanner Installation') {
     steps {
         script {
             withSonarQubeEnv('srikar_reddy') { 
-                bat '"${WORKSPACE}\\node_modules\\sonar-scanner\\bin\\sonar-scanner"'
+               bat '"%WORKSPACE%\\node_modules\\sonar-scanner\\bin\\sonar-scanner"'
+
 
             }
         }
