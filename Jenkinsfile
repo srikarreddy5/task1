@@ -32,7 +32,7 @@ pipeline {
                         "%WORKSPACE%\\node_modules\\sonar-scanner\\bin\\sonar-scanner" -X ^
                         -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} ^
                         -Dsonar.projectName=${env.SONAR_PROJECT_NAME} ^
-                        -Dsonar.sources=. ^  // Point to the root directory where index.js is located
+                        -Dsonar.sources=. ^
                         -Dsonar.host.url=${env.SONAR_HOST_URL} ^
                         -Dsonar.login=${env.SONAR_AUTH_TOKEN}
                         """
