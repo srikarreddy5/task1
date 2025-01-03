@@ -21,15 +21,16 @@ pipeline {
                 bat '"C:\\Program Files\\nodejs\\npm.cmd" install' // Directly use full path to npm.cmd
             }
         }
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv('srikar_reddy') { // Adjust the SonarQube installation name as needed
-                        bat 'npm run sonar-scanner' // Run SonarQube analysis using npm script
-                    }
-                }
+       stage('SonarQube Analysis') {
+    steps {
+        script {
+            withSonarQubeEnv('srikar_reddy') { 
+                bat 'npm run sonar-scanner'
             }
         }
+    }
+}
+
     }
     post {
         success {
